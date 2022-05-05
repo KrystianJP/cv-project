@@ -6,6 +6,7 @@ class WorkInfo extends React.Component {
     super(props);
 
     this.add = this.add.bind(this);
+    this.remove = this.remove.bind(this);
 
     this.state = { jobs: [this.jobForm(0)], ids: 1 };
   }
@@ -17,6 +18,17 @@ class WorkInfo extends React.Component {
     });
   }
 
+  remove(id) {
+    let job = this.state.jobs.find((job) => {
+      return job.key === String(id);
+    });
+    this.setState({
+      jobs: this.state.jobs
+        .slice(0, this.state.jobs.indexOf(job))
+        .concat(this.state.jobs.slice(this.state.jobs.indexOf(job) + 1)),
+    });
+  }
+
   jobForm(id) {
     return (
       <li className="job-form" key={id}>
@@ -24,6 +36,15 @@ class WorkInfo extends React.Component {
           <label htmlFor={"company" + id}>Company</label>
           <input type="text" name={"company" + id} id={"company" + id}></input>
         </div>
+        <button
+          type="button"
+          className="delete-job-button"
+          onClick={() => {
+            this.remove(id);
+          }}
+        >
+          -
+        </button>
       </li>
     );
   }
