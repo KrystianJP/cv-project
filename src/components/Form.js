@@ -1,6 +1,7 @@
 import React from "react";
 import GeneralInfo from "./GeneralInfo";
 import EducationInfo from "./EducationInfo";
+import WorkInfo from "./WorkExperience";
 import "../styles/style.css";
 
 class Form extends React.Component {
@@ -10,6 +11,7 @@ class Form extends React.Component {
         <div className="form">
           <GeneralInfo />
           <EducationInfo />
+          <WorkInfo />
         </div>
       </div>
     );
