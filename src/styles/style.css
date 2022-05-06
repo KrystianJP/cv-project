@@ -32,6 +32,7 @@ html {
 
 .cv {
   grid-area: cv;
+  overflow: hidden;
 }
 
 .input-container {
@@ -112,4 +113,21 @@ html {
   font-weight: bold;
   font-size: 18px;
   padding-bottom: 10px;
+}
+
+.cv-text {
+  list-style: none;
+}
+
+.user-img {
+  width: 300px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cv-name {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
 }
