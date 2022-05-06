@@ -18,6 +18,7 @@ html {
   grid-template-areas:
     "header header"
     "form cv";
+  gap: 10px;
 }
 
 .heading {
@@ -27,12 +28,10 @@ html {
 
 .form-container {
   grid-area: form;
-  border: 2px solid black;
 }
 
 .cv {
   grid-area: cv;
-  border: 2px solid black;
 }
 
 .input-container {
@@ -49,7 +48,8 @@ html {
   padding: 5px;
 }
 
-.form {
+.form,
+.cv {
   padding: 20px;
   background: rgb(230, 230, 230);
   width: 600px;
