@@ -85,18 +85,31 @@ html {
 }
 
 .job-form {
-  display: flex;
+  display: grid;
   gap: 30px;
-  align-items: flex-start;
+  grid-template-columns: 80% auto;
 }
 
 .job-form .input-container {
   width: 80%;
 }
-.job-form .input-container input {
+.job-form-inputs {
+  width: 100%;
+  flex-direction: column;
+}
+.job-form-inputs .input-container {
+  width: 100%;
+}
+.job-form-inputs .input-container input {
   width: 100%;
 }
 
 .delete-job-button {
   font-size: 30px;
+}
+
+.job-form-title {
+  font-weight: bold;
+  font-size: 18px;
+  padding-bottom: 10px;
 }

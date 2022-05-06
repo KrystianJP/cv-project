@@ -32,9 +32,24 @@ class WorkInfo extends React.Component {
   jobForm(id) {
     return (
       <li className="job-form" key={id}>
-        <div className="input-container">
-          <label htmlFor={"company" + id}>Company</label>
-          <input type="text" name={"company" + id} id={"company" + id}></input>
+        <div className="job-form-inputs">
+          <p className="job-form-title">Entry {id + 1}</p>
+          <div className="input-container">
+            <label htmlFor={"company" + id}>Company</label>
+            <input
+              type="text"
+              name={"company" + id}
+              id={"company" + id}
+            ></input>
+          </div>
+          <div className="input-container">
+            <label htmlFor={"job-title" + id}>Job Title</label>
+            <input
+              type="text"
+              name={"job-title" + id}
+              id={"job-title" + id}
+            ></input>
+          </div>
         </div>
         <button
           type="button"
