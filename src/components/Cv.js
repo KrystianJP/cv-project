@@ -29,6 +29,23 @@ class Cv extends React.Component {
     });
   }
 
+  studyDateText(from, to) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+
+    let result = "";
+    if (from) {
+      result += "From " + new Date(from).toLocaleString(undefined, options);
+    }
+    if (from && to) {
+      result += " to " + new Date(to).toLocaleString(undefined, options);
+    }
+    if (from && !to) {
+      result += " to now";
+    }
+
+    return result;
+  }
+
   render() {
     return (
       <div className="cv">
@@ -53,7 +70,11 @@ class Cv extends React.Component {
             <strong>Study Title:</strong> {this.props.values.studyTitle}
           </p>
           <p className="cv-text">
-            <strong>Study Date:</strong> {this.props.values.studyDate}
+            <strong>Study Date:</strong>{" "}
+            {this.studyDateText(
+              this.props.values.studyDateFrom,
+              this.props.values.studyDateTo,
+            )}
           </p>
         </div>
         <div>

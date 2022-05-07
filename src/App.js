@@ -20,7 +20,8 @@ class App extends React.Component {
       phone: null,
       schoolName: null,
       studyTitle: null,
-      studyDate: null,
+      studyDateFrom: null,
+      studyDateTo: null,
       jobs: [],
     };
   }

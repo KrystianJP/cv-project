@@ -29,15 +29,37 @@ class EducationInfo extends React.Component {
           ></input>
         </div>
         <div className="input-container">
-          <label htmlFor="study-date">Study Date</label>
-          <input
-            type="date"
-            name="study-date"
-            id="study-date"
-            onChange={(e) => {
-              this.props.changeValues(e.target.value, "studyDate");
-            }}
-          ></input>
+          <label>Study Date</label>
+          <div className="dates-container">
+            <div>
+              <label htmlFor="study-date-from" className="study-date-label">
+                From:
+              </label>
+              <input
+                type="date"
+                name="study-date-from"
+                id="study-date-from"
+                className="study-date"
+                onChange={(e) => {
+                  this.props.changeValues(e.target.value, "studyDateFrom");
+                }}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="study-date-to" className="study-date-label">
+                To:
+              </label>
+              <input
+                type="date"
+                name="study-date-to"
+                id="study-date-to"
+                className="study-date"
+                onChange={(e) => {
+                  this.props.changeValues(e.target.value, "studyDateTo");
+                }}
+              ></input>
+            </div>
+          </div>
         </div>
       </div>
     );
