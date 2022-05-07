@@ -21,6 +21,7 @@ class App extends React.Component {
       schoolName: null,
       studyTitle: null,
       studyDate: null,
+      jobs: [],
     };
   }
 
@@ -28,6 +29,12 @@ class App extends React.Component {
     let newState = {};
     newState[valueName] = value;
     this.setState(newState);
+  }
+
+  addJob(job) {
+    this.setState({
+      jobs: this.state.jobs.concat(job),
+    });
   }
 
   putValuesInList() {
@@ -49,19 +56,6 @@ class App extends React.Component {
       .concat(this.getUserImage())
       .concat(result.slice(1));
     return result;
-  }
-
-  getUserImage() {
-    let image = (
-      <img
-        key="image"
-        src="https://imgs.search.brave.com/wVaCsBwZBwBTc89EXf7S-Ef3xr4UQFVcxhdf1QEkd6U/rs:fit:916:980:1/g:ce/aHR0cDovL2Nkbi5v/bmxpbmV3ZWJmb250/cy5jb20vc3ZnL2lt/Z18yMTAzMTgucG5n"
-        className="user-img"
-        alt="user"
-      ></img>
-    );
-
-    return image;
   }
 
   render() {

@@ -7,6 +7,7 @@ class WorkInfo extends React.Component {
 
     this.add = this.add.bind(this);
     this.remove = this.remove.bind(this);
+    this.updateJobs = this.updateJobs.bind(this);
 
     this.state = { jobs: [this.jobForm(0)], ids: 1 };
   }
@@ -29,46 +30,84 @@ class WorkInfo extends React.Component {
     });
   }
 
-  jobForm(id) {
-    return (
-      <li className="job-form" key={id}>
-        <div className="job-form-inputs">
-          <p className="job-form-title">Entry {id + 1}</p>
-          <div className="input-container">
-            <label htmlFor={"company" + id}>Company</label>
-            <input
-              type="text"
-              name={"company" + id}
-              id={"company" + id}
-            ></input>
-          </div>
-          <div className="input-container">
-            <label htmlFor={"job-title" + id}>Job Title</label>
-            <input
-              type="text"
-              name={"job-title" + id}
-              id={"job-title" + id}
-            ></input>
-          </div>
-        </div>
-        <button
-          type="button"
-          className="delete-job-button"
-          onClick={() => {
-            this.remove(id);
-          }}
-        >
-          -
-        </button>
-      </li>
+  updateJobs(e, changeKey) {
+    let id = Number(e.target.id.slice(7));
+
+    let targetJob = this.state.jobs.filter((job) => job.id === id)[0];
+    let index = -1;
+    for (let i = 0; i < this.state.jobs.length; i++) {
+      if (this.state.jobs[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    targetJob[changeKey] = e.target.value;
+
+    this.setState(
+      {
+        jobs: this.state.jobs
+          .slice(0, index)
+          .concat(targetJob)
+          .concat(this.state.jobs.slice(index + 1)),
+      },
+      () => {
+        this.props.changeValues(this.state.jobs, "jobs");
+      },
     );
+  }
+
+  jobForm(id) {
+    return {
+      id,
+      company: null,
+      title: null,
+      jobForm: (
+        <li className="job-form" key={id}>
+          <div className="job-form-inputs">
+            <div className="input-container">
+              <label htmlFor={"company" + id}>Company</label>
+              <input
+                type="text"
+                name={"company" + id}
+                id={"company" + id}
+                onChange={(e) => {
+                  this.updateJobs(e, "company");
+                }}
+              ></input>
+            </div>
+            <div className="input-container">
+              <label htmlFor={"job-title" + id}>Job Title</label>
+              <input
+                type="text"
+                name={"job-title" + id}
+                id={"job-title" + id}
+                onChange={(e) => {
+                  this.updateJobs(e, "title");
+                }}
+              ></input>
+            </div>
+          </div>
+          <button
+            type="button"
+            className="delete-job-button"
+            onClick={() => {
+              this.remove(id);
+            }}
+          >
+            -
+          </button>
+        </li>
+      ),
+    };
   }
 
   render() {
     return (
       <div className="input-section">
         <h2>Work Experience</h2>
-        <ul className="jobs-list">{this.state.jobs}</ul>
+        <ul className="jobs-list">
+          {this.state.jobs.map((job) => job.jobForm)}
+        </ul>
         <button type="button" className="add-job-button" onClick={this.add}>
           +
         </button>
