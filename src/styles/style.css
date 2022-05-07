@@ -22,7 +22,10 @@ html {
 
 .heading {
   grid-area: header;
-  border: 2px solid black;
+  background: rgb(230, 230, 230);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-container {
