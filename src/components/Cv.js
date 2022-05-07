@@ -15,6 +15,20 @@ class Cv extends React.Component {
     return image;
   }
 
+  jobElements(jobs) {
+    return jobs.map((job) => {
+      return (
+        <div className="cv-job-container" key={job.id}>
+          <p className="cv-text cv-company">{job.company}</p>
+          <p className="cv-text">
+            <strong>Title: </strong>
+            {job.title}
+          </p>
+        </div>
+      );
+    });
+  }
+
   render() {
     return (
       <div className="cv">
@@ -44,6 +58,7 @@ class Cv extends React.Component {
         </div>
         <div>
           <h2>Work Experience</h2>
+          {this.jobElements(this.props.values.jobs)}
         </div>
       </div>
     );

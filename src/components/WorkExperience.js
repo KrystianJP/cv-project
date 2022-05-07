@@ -21,18 +21,21 @@ class WorkInfo extends React.Component {
 
   remove(id) {
     let job = this.state.jobs.find((job) => {
-      return job.key === String(id);
+      return job.jobForm.key === String(id);
     });
-    this.setState({
-      jobs: this.state.jobs
-        .slice(0, this.state.jobs.indexOf(job))
-        .concat(this.state.jobs.slice(this.state.jobs.indexOf(job) + 1)),
-    });
+    this.setState(
+      {
+        jobs: this.state.jobs
+          .slice(0, this.state.jobs.indexOf(job))
+          .concat(this.state.jobs.slice(this.state.jobs.indexOf(job) + 1)),
+      },
+      () => {
+        this.props.changeValues(this.state.jobs, "jobs");
+      },
+    );
   }
 
-  updateJobs(e, changeKey) {
-    let id = Number(e.target.id.slice(7));
-
+  updateJobs(e, changeKey, id) {
     let targetJob = this.state.jobs.filter((job) => job.id === id)[0];
     let index = -1;
     for (let i = 0; i < this.state.jobs.length; i++) {
@@ -71,7 +74,7 @@ class WorkInfo extends React.Component {
                 name={"company" + id}
                 id={"company" + id}
                 onChange={(e) => {
-                  this.updateJobs(e, "company");
+                  this.updateJobs(e, "company", id);
                 }}
               ></input>
             </div>
@@ -82,7 +85,7 @@ class WorkInfo extends React.Component {
                 name={"job-title" + id}
                 id={"job-title" + id}
                 onChange={(e) => {
-                  this.updateJobs(e, "title");
+                  this.updateJobs(e, "title", id);
                 }}
               ></input>
             </div>

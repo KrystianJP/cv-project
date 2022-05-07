@@ -120,6 +120,7 @@ html {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  margin: 20px 0;
 }
 
 .cv-name {
@@ -132,4 +133,9 @@ html {
 .cv h2 {
   margin: 10px 0;
   font-size: 30px;
+}
+
+.cv-company {
+  font-size: 24px;
+  font-weight: bold;
 }
