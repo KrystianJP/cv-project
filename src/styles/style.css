@@ -18,6 +18,7 @@ html {
   grid-template-areas:
     "header header"
     "form cv";
+  gap: 10px;
 }
 
 .heading {
@@ -30,12 +31,11 @@ html {
 
 .form-container {
   grid-area: form;
-  border: 2px solid black;
 }
 
 .cv {
   grid-area: cv;
-  border: 2px solid black;
+  overflow: hidden;
 }
 
 .input-container {
@@ -52,7 +52,8 @@ html {
   padding: 5px;
 }
 
-.form {
+.form,
+.cv {
   padding: 20px;
   background: rgb(230, 230, 230);
   width: 600px;
@@ -111,8 +112,33 @@ html {
   font-size: 30px;
 }
 
-.job-form-title {
-  font-weight: bold;
+.cv-text {
+  list-style: none;
+  height: 30px;
   font-size: 18px;
-  padding-bottom: 10px;
+}
+
+.user-img {
+  width: 300px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 20px 0;
+}
+
+.cv-name {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  height: 50px;
+}
+
+.cv h2 {
+  margin: 10px 0;
+  font-size: 30px;
+}
+
+.cv-company {
+  font-size: 24px;
+  font-weight: bold;
 }

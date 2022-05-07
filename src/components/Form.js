@@ -9,9 +9,9 @@ class Form extends React.Component {
     return (
       <div className="form-container">
         <div className="form">
-          <GeneralInfo />
-          <EducationInfo />
-          <WorkInfo />
+          <GeneralInfo changeValues={this.props.changeValues} />
+          <EducationInfo changeValues={this.props.changeValues} />
+          <WorkInfo changeValues={this.props.changeValues} />
         </div>
       </div>
     );
