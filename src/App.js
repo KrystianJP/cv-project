@@ -69,7 +69,7 @@ class App extends React.Component {
       <div id="content">
         <header className="heading">CV Project</header>
         <Form changeValues={this.changeValues} />
-        <Cv values={this.putValuesInList()} />
+        <Cv values={this.state} />
       </div>
     );
   }

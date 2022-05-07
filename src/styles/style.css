@@ -117,6 +117,8 @@ html {
 
 .cv-text {
   list-style: none;
+  height: 30px;
+  font-size: 18px;
 }
 
 .user-img {
@@ -130,4 +132,10 @@ html {
   font-size: 40px;
   font-weight: bold;
   text-align: center;
+  height: 50px;
+}
+
+.cv h2 {
+  margin: 10px 0;
+  font-size: 30px;
 }
