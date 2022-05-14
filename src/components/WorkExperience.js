@@ -1,65 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/style.css";
 
-class WorkInfo extends React.Component {
-  constructor(props) {
-    super(props);
+const WorkInfo = (props) => {
+  const [jobs, setJobs] = useAsyncState([jobForm(0)]);
+  const [ids, setIds] = useState(1);
 
-    this.add = this.add.bind(this);
-    this.remove = this.remove.bind(this);
-    this.updateJobs = this.updateJobs.bind(this);
-
-    this.state = { jobs: [this.jobForm(0)], ids: 1 };
+  function add() {
+    setJobs(jobs.concat(jobForm(ids))).then(props.changeValues(jobs, "Jobs"));
+    setIds(ids + 1);
   }
 
-  add() {
-    this.setState({
-      jobs: this.state.jobs.concat(this.jobForm(this.state.ids)),
-      ids: this.state.ids + 1,
-    });
-  }
-
-  remove(id) {
-    let job = this.state.jobs.find((job) => {
+  function remove(id) {
+    let job = jobs.find((job) => {
       return job.jobForm.key === String(id);
     });
-    this.setState(
-      {
-        jobs: this.state.jobs
-          .slice(0, this.state.jobs.indexOf(job))
-          .concat(this.state.jobs.slice(this.state.jobs.indexOf(job) + 1)),
-      },
-      () => {
-        this.props.changeValues(this.state.jobs, "Jobs");
-      },
-    );
+
+    setJobs(
+      jobs
+        .slice(0, jobs.indexOf(job))
+        .concat(jobs.slice(jobs.indexOf(job) + 1)),
+    ).then(props.changeValues(jobs, "Jobs"));
   }
 
-  updateJobs(e, changeKey, id) {
-    let targetJob = this.state.jobs.filter((job) => job.id === id)[0];
+  function updateJobs(e, changeKey, id) {
+    let targetJob = jobs.filter((job) => job.id === id)[0];
     let index = -1;
-    for (let i = 0; i < this.state.jobs.length; i++) {
-      if (this.state.jobs[i].id === id) {
+    for (let i = 0; i < jobs.length; i++) {
+      if (jobs[i].id === id) {
         index = i;
         break;
       }
     }
     targetJob[changeKey] = e.target.value;
 
-    this.setState(
-      {
-        jobs: this.state.jobs
-          .slice(0, index)
-          .concat(targetJob)
-          .concat(this.state.jobs.slice(index + 1)),
-      },
-      () => {
-        this.props.changeValues(this.state.jobs, "Jobs");
-      },
-    );
+    setJobs(
+      jobs
+        .slice(0, index)
+        .concat(targetJob)
+        .concat(jobs.slice(index + 1)),
+    ).then(props.changeValues(jobs, "Jobs"));
   }
 
-  jobForm(id) {
+  function jobForm(id) {
     return {
       id,
       company: null,
@@ -74,7 +56,7 @@ class WorkInfo extends React.Component {
                 name={"company" + id}
                 id={"company" + id}
                 onChange={(e) => {
-                  this.updateJobs(e, "company", id);
+                  updateJobs(e, "company", id);
                 }}
               ></input>
             </div>
@@ -85,7 +67,7 @@ class WorkInfo extends React.Component {
                 name={"job-title" + id}
                 id={"job-title" + id}
                 onChange={(e) => {
-                  this.updateJobs(e, "title", id);
+                  updateJobs(e, "title", id);
                 }}
               ></input>
             </div>
@@ -94,7 +76,7 @@ class WorkInfo extends React.Component {
             type="button"
             className="delete-job-button"
             onClick={() => {
-              this.remove(id);
+              remove(id);
             }}
           >
             -
@@ -104,19 +86,25 @@ class WorkInfo extends React.Component {
     };
   }
 
-  render() {
-    return (
-      <div className="input-section">
-        <h2>Work Experience</h2>
-        <ul className="jobs-list">
-          {this.state.jobs.map((job) => job.jobForm)}
-        </ul>
-        <button type="button" className="add-job-button" onClick={this.add}>
-          +
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div className="input-section">
+      <h2>Work Experience</h2>
+      <ul className="jobs-list">{jobs.map((job) => job.jobForm)}</ul>
+      <button type="button" className="add-job-button" onClick={add}>
+        +
+      </button>
+    </div>
+  );
+};
+
+function useAsyncState(initialValue) {
+  const [value, setValue] = useState(initialValue);
+  let setValuePromise = (x) =>
+    new Promise((resolve) => {
+      setValue(x);
+      resolve(x);
+    });
+  return [value, setValuePromise];
 }
 
 export default WorkInfo;
