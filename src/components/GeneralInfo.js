@@ -13,7 +13,7 @@ class GeneralInfo extends React.Component {
             name="name"
             id="name"
             onChange={(e) => {
-              this.props.changeValues(e.target.value, "name");
+              this.props.changeValues(e.target.value, "Name");
             }}
           ></input>
         </div>
@@ -24,7 +24,7 @@ class GeneralInfo extends React.Component {
             name="email"
             id="email"
             onChange={(e) => {
-              this.props.changeValues(e.target.value, "email");
+              this.props.changeValues(e.target.value, "Email");
             }}
           ></input>
         </div>
@@ -36,7 +36,7 @@ class GeneralInfo extends React.Component {
             id="phone"
             pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
             onChange={(e) => {
-              this.props.changeValues(e.target.value, "phone");
+              this.props.changeValues(e.target.value, "Phone");
             }}
           ></input>
         </div>

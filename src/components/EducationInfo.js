@@ -13,7 +13,7 @@ class EducationInfo extends React.Component {
             name="school"
             id="school"
             onChange={(e) => {
-              this.props.changeValues(e.target.value, "schoolName");
+              this.props.changeValues(e.target.value, "SchoolName");
             }}
           ></input>
         </div>
@@ -24,7 +24,7 @@ class EducationInfo extends React.Component {
             name="study-title"
             id="study-title"
             onChange={(e) => {
-              this.props.changeValues(e.target.value, "studyTitle");
+              this.props.changeValues(e.target.value, "StudyTitle");
             }}
           ></input>
         </div>
@@ -41,7 +41,7 @@ class EducationInfo extends React.Component {
                 id="study-date-from"
                 className="study-date"
                 onChange={(e) => {
-                  this.props.changeValues(e.target.value, "studyDateFrom");
+                  this.props.changeValues(e.target.value, "StudyDateFrom");
                 }}
               ></input>
             </div>
@@ -55,7 +55,7 @@ class EducationInfo extends React.Component {
                 id="study-date-to"
                 className="study-date"
                 onChange={(e) => {
-                  this.props.changeValues(e.target.value, "studyDateTo");
+                  this.props.changeValues(e.target.value, "StudyDateTo");
                 }}
               ></input>
             </div>

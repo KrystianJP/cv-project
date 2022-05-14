@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/style.css";
 
-class Cv extends React.Component {
-  getUserImage() {
+const Cv = (props) => {
+  function getUserImage() {
     let image = (
       <img
         key="image"
@@ -11,25 +11,28 @@ class Cv extends React.Component {
         alt="user"
       ></img>
     );
-
     return image;
   }
 
-  jobElements(jobs) {
-    return jobs.map((job) => {
-      return (
-        <div className="cv-job-container" key={job.id}>
-          <p className="cv-text cv-company">{job.company}</p>
-          <p className="cv-text">
-            <strong>Title: </strong>
-            {job.title}
-          </p>
-        </div>
-      );
-    });
+  function jobElements(jobs) {
+    if (jobs) {
+      return jobs.map((job) => {
+        return (
+          <div className="cv-job-container" key={job.id}>
+            <p className="cv-text cv-company">{job.company}</p>
+            <p className="cv-text">
+              <strong>Title: </strong>
+              {job.title}
+            </p>
+          </div>
+        );
+      });
+    } else {
+      return null;
+    }
   }
 
-  studyDateText(from, to) {
+  function studyDateText(from, to) {
     const options = { year: "numeric", month: "long", day: "numeric" };
 
     let result = "";
@@ -46,44 +49,39 @@ class Cv extends React.Component {
     return result;
   }
 
-  render() {
-    return (
-      <div className="cv">
-        <div>
-          <p className="cv-text cv-name">{this.props.values.name}</p>
-          {this.getUserImage()}
-          <p className="cv-text">
-            <strong>Email: </strong>
-            {this.props.values.email}
-          </p>
-          <p className="cv-text">
-            <strong>Phone Number: </strong>
-            {this.props.values.phone}
-          </p>
-        </div>
-        <div>
-          <h2>Education</h2>
-          <p className="cv-text">
-            <strong>School Name:</strong> {this.props.values.schoolName}
-          </p>
-          <p className="cv-text">
-            <strong>Study Title:</strong> {this.props.values.studyTitle}
-          </p>
-          <p className="cv-text">
-            <strong>Study Date:</strong>{" "}
-            {this.studyDateText(
-              this.props.values.studyDateFrom,
-              this.props.values.studyDateTo,
-            )}
-          </p>
-        </div>
-        <div>
-          <h2>Work Experience</h2>
-          {this.jobElements(this.props.values.jobs)}
-        </div>
+  return (
+    <div className="cv">
+      <div>
+        <p className="cv-text cv-name">{props.values.name}</p>
+        {getUserImage()}
+        <p className="cv-text">
+          <strong>Email: </strong>
+          {props.values.email}
+        </p>
+        <p className="cv-text">
+          <strong>Phone Number: </strong>
+          {props.values.phone}
+        </p>
       </div>
-    );
-  }
-}
+      <div>
+        <h2>Education</h2>
+        <p className="cv-text">
+          <strong>School Name:</strong> {props.values.schoolName}
+        </p>
+        <p className="cv-text">
+          <strong>Study Title:</strong> {props.values.studyTitle}
+        </p>
+        <p className="cv-text">
+          <strong>Study Date:</strong>{" "}
+          {studyDateText(props.values.studyDateFrom, props.values.studyDateTo)}
+        </p>
+      </div>
+      <div>
+        <h2>Work Experience</h2>
+        {jobElements(props.values.jobs)}
+      </div>
+    </div>
+  );
+};
 
 export default Cv;

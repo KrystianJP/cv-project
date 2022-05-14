@@ -11,10 +11,14 @@ const App = (props) => {
   const [studyTitle, setStudyTitle] = useState(null);
   const [studyDateFrom, setStudyDateFrom] = useState(null);
   const [studyDateTo, setStudyDateTo] = useState(null);
-  const [jobs, setJobs] = useState(null);
+  const [jobs, setJobs] = useState([]);
 
   function changeValues(value, valueName) {
-    eval("set" + valueName + `(${value})`);
+    if (typeof value === "string") {
+      eval("set" + valueName + `("${value}")`);
+    } else {
+      setJobs(value);
+    }
   }
 
   return (

@@ -30,7 +30,7 @@ class WorkInfo extends React.Component {
           .concat(this.state.jobs.slice(this.state.jobs.indexOf(job) + 1)),
       },
       () => {
-        this.props.changeValues(this.state.jobs, "jobs");
+        this.props.changeValues(this.state.jobs, "Jobs");
       },
     );
   }
@@ -54,7 +54,7 @@ class WorkInfo extends React.Component {
           .concat(this.state.jobs.slice(index + 1)),
       },
       () => {
-        this.props.changeValues(this.state.jobs, "jobs");
+        this.props.changeValues(this.state.jobs, "Jobs");
       },
     );
   }
